@@ -1,0 +1,7 @@
+{
+    "[cpp]": {
+        "editor.defaultFormatter": "ms-vscode.cpptools",
+        "editor.tabSize": 4,
+        "editor.formatOnSave": true
+    }
+}

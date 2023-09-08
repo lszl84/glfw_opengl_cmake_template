@@ -1,0 +1,46 @@
+{
+  "configurations": [
+      {
+          "name": "Mac",
+          "includePath": [
+              "${workspaceFolder}/src/**",
+              "${workspaceFolder}/build/stage/include/**",
+          ],
+          "defines": [
+          ],
+          "macFrameworkPath": [],
+          "compilerPath": "/usr/bin/clang",
+          "cStandard": "c11",
+          "cppStandard": "c++17",
+          "intelliSenseMode": "clang-x64"
+      },
+      {
+          "name": "Windows",
+          "includePath": [
+              "${workspaceFolder}/src/**",
+              "${workspaceFolder}/build/stage/include/**"
+          ],
+          "defines": [
+
+          ],
+          "compilerPath": "cl.exe",
+          "cStandard": "c11",
+          "cppStandard": "c++17",
+          "intelliSenseMode": "msvc-x64"
+      },
+      {
+        "name": "Linux",
+        "includePath": [
+            "${workspaceFolder}/src/**",
+            "${workspaceFolder}/build/stage/include/**",
+        ],
+        "defines": [
+        ],
+        "compilerPath": "g++",
+        "cStandard": "c11",
+        "cppStandard": "c++17",
+        "intelliSenseMode": "gcc-x64"
+    }
+  ],
+  "version": 4
+}
