@@ -1,19 +1,25 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 #include <array>
 #include <iostream>
 
 unsigned int shaderProgram{};
+glm::mat4 rotationMatrix = glm::mat4(1.0f);
 
 constexpr auto vertexShaderSource = R"(
     #version 330 core
     
     layout (location = 0) in vec3 aPos;
+    uniform mat4 rotationMatrix;
 
     void main()
     {
-        gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);
+        gl_Position = rotationMatrix * vec4(aPos.x, aPos.y, aPos.z, 1.0);
     }
 )";
 
@@ -41,6 +47,7 @@ constexpr auto squareVertices = std::array{
 };
 
 void framebufferSizeChanged(GLFWwindow *window, int width, int height);
+void processInput(GLFWwindow *window);
 void render(GLFWwindow *window);
 
 int main()
@@ -141,6 +148,7 @@ int main()
 
     while (!glfwWindowShouldClose(window))
     {
+        processInput(window);
         render(window);
         glfwPollEvents();
     }
@@ -159,12 +167,27 @@ void framebufferSizeChanged(GLFWwindow *window, int width, int height)
     render(window);
 }
 
+void processInput(GLFWwindow *window)
+{
+    if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
+    {
+        rotationMatrix = glm::rotate(rotationMatrix, glm::radians(1.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+    }
+    if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
+    {
+        rotationMatrix = glm::rotate(rotationMatrix, glm::radians(-1.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+    }
+}
+
 void render(GLFWwindow *window)
 {
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
     glUseProgram(shaderProgram);
+
+    auto location = glGetUniformLocation(shaderProgram, "rotationMatrix");
+    glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(rotationMatrix));
 
     glDrawArrays(GL_LINES, 0, static_cast<GLsizei>(squareVertices.size() / 3));
 
