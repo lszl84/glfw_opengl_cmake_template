@@ -47,7 +47,7 @@ constexpr auto squareVertices = std::array{
 };
 
 void framebufferSizeChanged(GLFWwindow *window, int width, int height);
-void processInput(GLFWwindow *window);
+void processInput(GLFWwindow *window, float deltaTime);
 void render(GLFWwindow *window);
 
 int main()
@@ -146,9 +146,15 @@ int main()
 
     glfwSetFramebufferSizeCallback(window, framebufferSizeChanged);
 
+    float lastFrameStartTime = 0.0f;
+
     while (!glfwWindowShouldClose(window))
     {
-        processInput(window);
+        float currentFrameStartTime = static_cast<float>(glfwGetTime());
+        float deltaTime = currentFrameStartTime - lastFrameStartTime;
+        lastFrameStartTime = currentFrameStartTime;
+
+        processInput(window, deltaTime);
         render(window);
         glfwPollEvents();
     }
@@ -167,15 +173,22 @@ void framebufferSizeChanged(GLFWwindow *window, int width, int height)
     render(window);
 }
 
-void processInput(GLFWwindow *window)
+void processInput(GLFWwindow *window, float deltaTime)
 {
+    const float rotationSpeedDegreesPerSecond = 90.0f;
+    const float rotationAnglePerFrame = rotationSpeedDegreesPerSecond * deltaTime;
+
     if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
     {
-        rotationMatrix = glm::rotate(rotationMatrix, glm::radians(1.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+        rotationMatrix = glm::rotate(rotationMatrix,
+                                     glm::radians(rotationAnglePerFrame),
+                                     glm::vec3(0.0f, 0.0f, 1.0f));
     }
     if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
     {
-        rotationMatrix = glm::rotate(rotationMatrix, glm::radians(-1.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+        rotationMatrix = glm::rotate(rotationMatrix,
+                                     glm::radians(-rotationAnglePerFrame),
+                                     glm::vec3(0.0f, 0.0f, 1.0f));
     }
 }
 
