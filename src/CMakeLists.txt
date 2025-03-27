@@ -5,8 +5,16 @@ project(glfw_opengl_cmake_template_core LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-file(TO_NATIVE_PATH "${STAGED_INSTALL_PREFIX}/lib/cmake/glfw3" glfw3_DIR)
-file(TO_NATIVE_PATH "${STAGED_INSTALL_PREFIX}/lib/cmake/glew" GLEW_DIR)
+if(EXISTS "${STAGED_INSTALL_PREFIX}/lib64")
+    set(_LIBDIR "lib64")
+elseif(EXISTS "${STAGED_INSTALL_PREFIX}/lib")
+    set(_LIBDIR "lib")
+else()
+    message(FATAL_ERROR "No 'lib' or 'lib64' directory found in ${STAGED_INSTALL_PREFIX}")
+endif()
+
+file(TO_NATIVE_PATH "${STAGED_INSTALL_PREFIX}/${_LIBDIR}/cmake/glfw3" glfw3_DIR)
+file(TO_NATIVE_PATH "${STAGED_INSTALL_PREFIX}/${_LIBDIR}/cmake/glew" GLEW_DIR)
 
 message(STATUS "glfw3_DIR is... ${glfw3_DIR}")
 message(STATUS "GLEW_DIR is... ${GLEW_DIR}")
