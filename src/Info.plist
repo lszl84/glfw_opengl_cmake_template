@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>CFBundleIdentifier</key>
-    <string>com.lukesdevtutorials.glfw_opengl_cmake_template</string>
+    <string>com.onlyfastcode.glfw_opengl_cmake_template</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
     <key>CFBundlePackageType</key>

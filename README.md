@@ -7,5 +7,5 @@ GLFW, GLEW, and GLM are automatically downloaded from GitHub and compiled (in ca
 Full Tutorial: https://www.youtube.com/watch?v=dA991DBSZh4
 
 ---
-Check out the blog for more! [www.lukesdevtutorials.com](https://www.lukesdevtutorials.com)
+Check out the blog for more! [www.onlyfastcode.com](https://www.onlyfastcode.com)
 ---
