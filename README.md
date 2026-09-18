@@ -7,5 +7,5 @@ GLFW, GLEW, and GLM are automatically downloaded from GitHub and compiled (in ca
 Full Tutorial: https://www.youtube.com/watch?v=dA991DBSZh4
 
 ---
-Check out the blog for more! [devmindscape.com](https://devmindscape.com)
+📚 More C++ and wxWidgets tutorials: [devmindscape.com](https://devmindscape.com) · 💼 Available for contract work: [devmindscape.com/work](https://devmindscape.com/work/)
 ---
