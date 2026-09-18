@@ -8,4 +8,5 @@ Full Tutorial: https://www.youtube.com/watch?v=dA991DBSZh4
 
 ---
 📚 More C++ and wxWidgets tutorials: [devmindscape.com](https://devmindscape.com) · 💼 Available for contract work: [devmindscape.com/work](https://devmindscape.com/work/)
+
 ---
